@@ -1,0 +1,6 @@
+@WorlAttractionsExplorer_HostAddress = http://localhost:5146
+
+GET {{WorlAttractionsExplorer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

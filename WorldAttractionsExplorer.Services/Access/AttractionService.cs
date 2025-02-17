@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using WorldAttractionsExplorer.DataAccess;
 using WorldAttractionsExplorer.DataAccess.Models;
 using WorldAttractionsExplorer.Services.Contracts;
@@ -7,23 +8,23 @@ using WorldAttractionsExplorer.Services.Contracts;
 
 namespace WorldAttractionsExplorer.Services.Access
 {
-    public class AttractionService(ServerDbContext context) : IAttractionService
+    public class AttractionService(ServerDbContext context) : IAttractionContract
     {
         private readonly ServerDbContext _context = context;
 
         public async Task<IEnumerable<Attractions>> GetAllAsync()
         {
             return await _context.Attractions
-                    .Include(i => i.PrimaryImage)
-                    .Include(i => i.OptionalImages)
-                    .Include(a => a.Reviews)
+                    .Include(c => c.Country)
+                    .Include(t => t.AttractionTags)
                     .ToListAsync();
         }
 
         public async Task<Attractions?> GetByIdAsync(int id)
         {
             return await _context.Attractions
-                    .Include(a => a.Reviews)
+                    .Include(c => c.Country)
+                    .Include(t => t.AttractionTags)
                     .FirstOrDefaultAsync(a => a.AttractionId == id);
         }
 
@@ -54,7 +55,17 @@ namespace WorldAttractionsExplorer.Services.Access
             var attraction = await _context.Attractions.FindAsync(id);
             if (attraction == null) return false;
 
+            var reviews = _context.Reviews.Where(review => review.AttractionId == attraction.AttractionId);
+
+            var images = _context.Images.Where(image => image.AttractionId == attraction.AttractionId);
+
+            _context.Reviews.RemoveRange(reviews);
+
+            _context.Images.RemoveRange(images);
+
             _context.Attractions.Remove(attraction);
+
+            
             await _context.SaveChangesAsync();
             return true;
         }

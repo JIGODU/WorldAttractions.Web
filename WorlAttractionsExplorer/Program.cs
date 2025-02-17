@@ -30,11 +30,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("ApiSecretKey").ToString())),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Jwt:Key").ToString())),
             ValidateIssuer = true,
-            ValidIssuer = "wae-web",
+            ValidIssuer = builder.Configuration.GetSection("Jwt:Issuer").ToString(),
             ValidateAudience = true,
-            ValidAudience = "wae-app",
+            ValidAudience = builder.Configuration.GetSection("Jwt:Audience").ToString(),
             ValidateLifetime = true
         };
     });

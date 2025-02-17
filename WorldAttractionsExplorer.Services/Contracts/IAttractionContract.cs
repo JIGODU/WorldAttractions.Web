@@ -2,7 +2,7 @@
 
 namespace WorldAttractionsExplorer.Services.Contracts
 {
-    public interface IAttractionService
+    public interface IAttractionContract
     {
         Task<IEnumerable<Attractions>> GetAllAsync();
 

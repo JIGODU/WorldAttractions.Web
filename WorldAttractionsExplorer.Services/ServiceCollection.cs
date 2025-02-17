@@ -8,7 +8,9 @@ namespace WorldAttractionsExplorer.Services
     {
         public static void AddServiceCollection(this IServiceCollection services)
         {
-            services.AddScoped<IAttractionService, AttractionService>();
+            services.AddScoped<IAttractionContract, AttractionService>();
+            services.AddScoped<IReviewContract, ReviewService>();
+            services.AddScoped<IUserContract, UserService>();
         }
     }
 }

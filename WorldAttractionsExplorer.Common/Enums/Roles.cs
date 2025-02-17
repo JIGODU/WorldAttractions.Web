@@ -4,6 +4,5 @@ public enum Roles
 {
     Admin,
     Guide,
-    Known,
-    Anonym
+    User
 }

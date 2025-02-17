@@ -1,3 +1,19 @@
+INSERT INTO AspNetRoles (Id, Name, NormalizedName, ConcurrencyStamp)
+VALUES
+    (UUID(), 'Admin', 'ADMIN', UUID()),
+    (UUID(), 'Guide', 'GUIDE', UUID()),
+    (UUID(), 'User', 'USER', UUID());
+
+INSERT INTO AspNetUsers (Id, UserName, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed, PasswordHash, SecurityStamp, ConcurrencyStamp, PhoneNumberConfirmed, TwoFactorEnabled, LockoutEnabled, AccessFailedCount)
+VALUES 
+(UUID(), 'admin@war.com', 'ADMIN@WAR.COM', 'admin@war.com', 'ADMIN@WAR.COM', 1, 
+'EurIwtHL7x1nlvnt8eN4Uw==', UUID(), UUID(), 1, 0, 1, 0);
+
+INSERT INTO AspNetUsers (FullName,DateOfJoin,Bio,ProfilePicture,Id, UserName, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed, PasswordHash, SecurityStamp, ConcurrencyStamp, PhoneNumberConfirmed, TwoFactorEnabled, LockoutEnabled, AccessFailedCount)
+VALUES 
+('Administrator',NOW(),'Root admin of the application','',UUID(), 'admin@war.com', 'ADMIN@WAR.COM', 'admin@war.com', 'ADMIN@WAR.COM', 1, 
+'EurIwtHL7x1nlvnt8eN4Uw==', UUID(), UUID(), 1, 0, 1, 0);
+
 INSERT INTO countries (CountryName) VALUES
 ('Afghanistan'),
 ('Albania'),

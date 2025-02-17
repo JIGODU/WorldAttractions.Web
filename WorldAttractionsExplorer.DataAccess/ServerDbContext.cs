@@ -1,11 +1,11 @@
-using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WorldAttractionsExplorer.DataAccess.Models;
-using static System.Net.Mime.MediaTypeNames;
+
 
 namespace WorldAttractionsExplorer.DataAccess;
 
-public class ServerDbContext:DbContext
+public class ServerDbContext:IdentityDbContext<Users>
 {
     public ServerDbContext(DbContextOptions options) : base(options)
     {
@@ -43,10 +43,10 @@ public class ServerDbContext:DbContext
             .ValueGeneratedOnAdd();
 
         modelBuilder.Entity<Users>()
-            .HasKey(t => t.UserId);
+            .HasKey(t => t.Id);
 
         modelBuilder.Entity<Users>()
-            .Property(i => i.UserId)
+            .Property(i => i.Id)
             .ValueGeneratedOnAdd();
 
         modelBuilder.Entity<Reviews>()

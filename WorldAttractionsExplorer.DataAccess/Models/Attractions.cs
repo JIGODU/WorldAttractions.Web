@@ -14,13 +14,13 @@ public class Attractions
 
     public string Description { get; set; }
 
-    public int AuthorId { get; set; }
+    public string AuthorId { get; set; }
 
     public Users Author { get; set; }
 
     public DateTime PublishedDate { get; set; }
 
-    public int EditorId { get; set; }
+    public string EditorId { get; set; }
 
     public Users Editor { get; set; }
 

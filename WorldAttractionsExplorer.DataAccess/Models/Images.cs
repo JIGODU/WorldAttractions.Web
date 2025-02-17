@@ -14,7 +14,7 @@ public class Images
 
     public string ImagePath { get; set; }
 
-    public int OwnerId { get; set; }
+    public string OwnerId { get; set; }
 
     public Users Owner { get; set; }
 }

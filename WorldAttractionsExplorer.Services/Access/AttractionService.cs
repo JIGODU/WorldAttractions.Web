@@ -7,14 +7,9 @@ using WorldAttractionsExplorer.Services.Contracts;
 
 namespace WorldAttractionsExplorer.Services.Access
 {
-    public class AttractionService : IAttractionService
+    public class AttractionService(ServerDbContext context) : IAttractionService
     {
-        private readonly ServerDbContext _context;
-
-        public AttractionService(ServerDbContext context)
-        {
-            _context = context;
-        }
+        private readonly ServerDbContext _context = context;
 
         public async Task<IEnumerable<Attractions>> GetAllAsync()
         {
